@@ -1,0 +1,82 @@
+/* ========== Variables =========== */
+:root {
+    /* Colors */
+    --main-background: #F5F2EA;
+    --color-title-text: #403427;
+    --color-title-stripes: #FF664B;
+    --color-stripes: #6CAEB6;
+
+    /* Parameters */
+    --default-padding: 2rem;
+    --size-title: 2rem;
+    --size-stripes: 2px;
+}
+
+html, body {
+    font-family: 'Play', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--main-background);
+}
+
+/* ========== Components ========== */
+
+/* Layout */
+.container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: var(--default-padding);
+}
+
+/* Decoration */
+.stripes {
+    position: relative;
+    z-index: 1;
+    height: var(--size-title);
+    margin-bottom: var(--default-padding);
+}
+.stripes::before {
+    right: 0;
+    left: 0;
+    content: '';
+    position: absolute;
+    background: repeating-linear-gradient(
+        0deg,
+        var(--color-stripes),
+        var(--color-stripes) var(--size-stripes),
+        transparent var(--size-stripes),
+        transparent calc(var(--size-stripes) * 4)
+        );    
+    width: 100%;
+    height: var(--size-title);
+}
+
+.stripes-text {
+    background-color: var(--main-background);
+    width: max-content;
+    z-index: 1;
+    position: absolute;
+    width: max-content;
+    padding: 0 var(--default-padding);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+/* Text */
+h1 {
+    font-size: var(--size-title);
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-title-text);
+}
+
+/* Buttons */
+
+/* Display */
+.display .text {
+    font-family: 'CF LCD 521', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ========== Responsive ========== */
+
