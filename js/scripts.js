@@ -12,6 +12,7 @@ $(".btn").click(function(event) {
 function btnClick(event) {
     const btnElement = event.target;
     const operation = $(btnElement).attr('data-action');
+    let result = null;
 
     switch (operation) {
         case 'digit':
@@ -46,7 +47,10 @@ function btnClick(event) {
             break;
 
         case 'equals':
-            calculateExpression();
+            result = calculateExpression();
+            clearDisplay({mode: 'all'})
+
+            updateDisplay(result);
             break;
 
         case 'clear_all':
@@ -146,13 +150,24 @@ function clearDisplay(params) {
     }
 }
 
-function parseExpression() {
-    // TODO: dividir com regex os sinais
-    // TODO: Verificar se é divisao por zero
-}
-
 
 function calculateExpression() {
+    const expression = $('#display').text();
+    const splitedExpression = splitExpression(expression);
+
+    const insuficientOperands = splitedExpression.operands.length < 2;
+    const divisionByZero =
+        splitedExpression.operators[0] == '/'
+        && parseFloat(splitedExpression.operands[1]) == 0
+
+    if (insuficientOperands || divisionByZero)
+        displayError();
+
+    return eval(
+        splitedExpression.operands[0]
+            + splitedExpression.operators[0]
+            + splitedExpression.operands[1]
+    );
 }
 
 function calculatePercentage() {
