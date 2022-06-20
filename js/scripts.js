@@ -160,8 +160,10 @@ function calculateExpression() {
         splitedExpression.operators[0] == '/'
         && parseFloat(splitedExpression.operands[1]) == 0
 
-    if (insuficientOperands || divisionByZero)
+    if (insuficientOperands || divisionByZero) {
         displayError();
+        return expression;
+    }
 
     return eval(
         splitedExpression.operands[0]
