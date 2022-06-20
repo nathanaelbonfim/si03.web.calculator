@@ -41,9 +41,11 @@ function btnClick(event) {
             updateDisplay('/');
             break;
 
-
         case 'percentage':
-            calculatePercentage();
+            result = calculatePercentage();
+            clearDisplay({mode: 'all'})
+
+            updateDisplay(result);
             break;
 
         case 'equals':
@@ -81,8 +83,9 @@ function splitExpression(expression) {
         ]
 
         // HACK
-        if (!operands[1]) {
-            operands = [operands[0]]
+        let operandsFound = operands[1];
+        if (!operandsFound) {
+            operands = [operands[0]];
         }
     } else {
         operands = [expression]
@@ -173,5 +176,50 @@ function calculateExpression() {
 }
 
 function calculatePercentage() {
+    const expression = $('#display').text();
+    const splitedExpression = splitExpression(expression);
+    let result, initialValue, operator, percentage, divisionByZero = null;
+
+    switch (splitedExpression.operators[0]) {
+        case '+':
+        case '-':
+            initialValue = splitedExpression.operands[0]
+            operator = splitedExpression.operators[0];
+            percentage = splitedExpression.operands[1] / 100;
+            return eval(
+                initialValue
+                + operator
+                + (initialValue * percentage)
+            )
+
+        case '*':
+        case '/':
+            initialValue = splitedExpression.operands[0]
+            operator = splitedExpression.operators[0];
+            percentage = splitedExpression.operands[1] / 100;
+
+            divisionByZero = operator == '/' && parseFloat(percentage) == 0;
+            if (divisionByZero) {
+                displayError()
+                return expression;
+            }
+                
+            return eval(
+                initialValue
+                + operator
+                + (percentage)
+            )
+    }
+
+    if (insuficientOperands || divisionByZero) {
+        displayError();
+        return expression;
+    }
+
+    return eval(
+        splitedExpression.operands[0]
+            + splitedExpression.operators[0]
+            + splitedExpression.operands[1]
+    );
 }
 
