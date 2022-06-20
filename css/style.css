@@ -5,21 +5,30 @@
     --color-title-text: #403427;
     --color-title-stripes: #FF664B;
     --color-stripes: #6CAEB6;
+    --color-shadow: #D1CCC3;
 
     --color-calculator-body: #fff;
+    --color-display: #040404;
+    --color-lcd: #47BBCD;
 
     --color-btn-dg: #3A3A3A; /* Digit */
     --color-btn-op: #8D8F8B; /* Operation */
     --color-btn-sp: #2880AB; /* Special operation */
-    --color-btn-fn: #FFA64E; /* Function */
+    --color-btn-fn: #FC942C; /* Function */
     --color-btn-text: rgba(255, 255, 255, .85);
 
     /* Parameters */
     --default-padding: 2rem;
     --buttons-spacing: 1rem;
     --size-title: 2rem;
+    --size-lcd-text: 1.4rem;
     --size-stripes: 2px;
+    --padding-display: .5rem;
+
     --radius-btn: .3rem;
+    --radius-outer-frame: 1rem;
+    --radius-inner-frame: 2rem;
+    --radius-display: .3rem;
 }
 
 html, body {
@@ -42,7 +51,45 @@ html, body {
     margin: 0 auto;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
+    padding: var(--default-padding) calc(var(--default-padding) /2) ;
+    box-shadow: 0px 3px 18px var(--color-shadow);
+    border-radius: var(--radius-outer-frame);
+}
+
+.display {
+    background-color: var(--color-display);
+    height: 5rem;
+    width: 100%;
+    margin-bottom: var(--default-padding);
+    border-radius: var(--radius-display);
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: var(--padding-display);
+}
+
+.display .logo {
+    width: 100%;
+    margin-bottom: var(--padding-display);
+    border-bottom: solid 1px var(--color-lcd);
+    color: var(--color-lcd);
+    font-size: .7rem;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: .2rem;
+}
+
+.display .logo img {
+    width: 4rem;
+}
+
+.display .text {
+    color: var(--color-lcd);
+    font-size: var(--size-lcd-text);
+    text-shadow: 0px 0px 8px var(--color-lcd);
 }
 
 .numpad-container {
@@ -51,6 +98,7 @@ html, body {
     grid-row-gap: var(--buttons-spacing);
     grid-column-gap: var(--buttons-spacing);
 }
+
 
 /* Decoration */
 .stripes {
@@ -130,13 +178,6 @@ h1 {
 
 .toggle-switch {
     background-color: var(--color-stripes);
-}
-
-/* Display */
-.display .text {
-    font-family: 'CF LCD 521', sans-serif;
-    font-weight: normal;
-    font-style: normal;
 }
 
 /* ========== Responsive ========== */

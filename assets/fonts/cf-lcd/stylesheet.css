@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'CF LCD 521';
+    src: url('CFLCD-Regular.woff2') format('woff2'),
+        url('CFLCD-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
