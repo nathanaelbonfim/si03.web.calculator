@@ -1,0 +1,185 @@
+/* ========== Variables =========== */
+:root {
+    /* Colors */
+    --main-background: #F5F2EA;
+    --color-title-text: #403427;
+    --color-title-stripes: #FF664B;
+    --color-stripes: #6CAEB6;
+    --color-shadow: #D1CCC3;
+
+    --color-calculator-body: #fff;
+    --color-display: #040404;
+    --color-lcd: #47BBCD;
+
+    --color-btn-dg: #3A3A3A; /* Digit */
+    --color-btn-op: #8D8F8B; /* Operation */
+    --color-btn-sp: #2880AB; /* Special operation */
+    --color-btn-fn: #FC942C; /* Function */
+    --color-btn-text: rgba(255, 255, 255, .85);
+
+    /* Parameters */
+    --default-padding: 2rem;
+    --buttons-spacing: 1rem;
+    --size-title: 2rem;
+    --size-lcd-text: 1.4rem;
+    --size-stripes: 2px;
+    --padding-display: .5rem;
+
+    --radius-btn: .3rem;
+    --radius-outer-frame: 1rem;
+    --radius-inner-frame: 2rem;
+    --radius-display: .3rem;
+}
+
+html, body {
+    font-family: 'Play', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--main-background);
+}
+
+/* ========== Components ========== */
+
+/* Layout */
+.container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: var(--default-padding);
+}
+
+.inner-frame {
+    background-color: var(--color-calculator-body);
+    max-width: 16rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--default-padding) calc(var(--default-padding) /2) ;
+    box-shadow: 0px 3px 18px var(--color-shadow);
+    border-radius: var(--radius-outer-frame);
+}
+
+.display {
+    background-color: var(--color-display);
+    height: 5.5rem;
+    width: 100%;
+    margin-bottom: var(--default-padding);
+    border-radius: var(--radius-display);
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: var(--padding-display);
+}
+
+.display .logo {
+    width: 100%;
+    margin-bottom: var(--padding-display);
+    border-bottom: solid 1px var(--color-lcd);
+    color: var(--color-lcd);
+    font-size: .7rem;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: .2rem;
+}
+
+.display .logo img {
+    width: 4rem;
+}
+
+.display .text {
+    word-break: break-all;
+    color: var(--color-lcd);
+    font-size: var(--size-lcd-text);
+    text-shadow: 0px 0px 8px var(--color-lcd);
+}
+
+.numpad-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-row-gap: var(--buttons-spacing);
+    grid-column-gap: var(--buttons-spacing);
+}
+
+
+/* Decoration */
+.stripes {
+    position: relative;
+    z-index: 1;
+    height: var(--size-title);
+    margin-bottom: var(--default-padding);
+}
+.stripes::before {
+    right: 0;
+    left: 0;
+    content: '';
+    position: absolute;
+    background: repeating-linear-gradient(
+        0deg,
+        var(--color-stripes),
+        var(--color-stripes) var(--size-stripes),
+        transparent var(--size-stripes),
+        transparent calc(var(--size-stripes) * 4)
+        );    
+    width: 100%;
+    height: var(--size-title);
+}
+
+.stripes-text {
+    background-color: var(--main-background);
+    width: max-content;
+    z-index: 1;
+    position: absolute;
+    width: max-content;
+    padding: 0 var(--default-padding);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+/* Text */
+h1 {
+    font-size: var(--size-title);
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-title-text);
+}
+
+/* Buttons */
+.btn {
+    height: 2rem;
+    width: 3rem;
+    font-size: 1.5rem;
+    color: var(--color-btn-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(75%) saturate(160%);
+}
+
+.btn-dg {
+    background-color: var(--color-btn-dg);
+}
+
+.btn-fn {
+    background-color: var(--color-btn-fn);
+}
+
+.btn-op {
+    background-color: var(--color-btn-op);
+}
+
+.btn-sp {
+    background-color: var(--color-btn-sp);
+}
+
+.toggle-switch {
+    background-color: var(--color-stripes);
+}
+
+/* ========== Responsive ========== */
+

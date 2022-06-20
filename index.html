@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>Calculadora</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Nathanael Bonfim">
+        <meta name="ra" content="00210465">
+
+        <!-- Styles -->
+        <link href="css/reset.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
+
+        <link href="assets/fonts/cf-lcd/stylesheet.css" rel="stylesheet">
+    </head>
+    <body>
+        <main class="container">
+            <div class="stripes">
+                <h1 class="stripes-text">Calculator</h1>
+            </div>
+            <div class="calculator-body">
+                <div class="inner-frame">
+                    <!-- Display -->
+                    <div class="display">
+                        <div class="logo" role="presentation">
+                            <img src="assets/img/cassio-logo.png"/>
+                            <span>Eletronic Calculator<span>
+                        </div>
+                        <div id="display" class="text">123</div>
+                    </div>
+
+                    <!-- Numpad -->
+                    <div class="numpad-container">
+                        <!-- Row 1 -->
+                        <div class="btn toggle-switch">
+                            <div class="toggler" role="button"></div>
+                        </div>
+                        <div class="btn btn-fn" role="button" data-action="clear_all">CA</div>
+                        <div class="btn btn-fn" role="button" data-action="clear_last">C</div>
+                        <div class="btn btn-sp" role="button" data-action="percentage">%</div>
+
+                        <!-- Row 2 -->
+                        <div class="btn btn-dg" role="button" data-action="digit">7</div>
+                        <div class="btn btn-dg" role="button" data-action="digit">8</div>
+                        <div class="btn btn-dg" role="button" data-action="digit">9</div>
+                        <div class="btn btn-op" role="button" data-action="division">÷</div>
+
+                        <!-- Row 3 -->
+                        <div class="btn btn-dg" role="button" data-action="digit">4</div>
+                        <div class="btn btn-dg" role="button" data-action="digit">5</div>
+                        <div class="btn btn-dg" role="button" data-action="digit">6</div>
+                        <div class="btn btn-op" role="button" data-action="multiplication">×</div>
+
+                        <!-- Row 4 -->
+                        <div class="btn btn-dg" role="button" data-action="digit">1</div>
+                        <div class="btn btn-dg" role="button" data-action="digit">2</div>
+                        <div class="btn btn-dg" role="button" data-action="digit">3</div>
+                        <div class="btn btn-op" role="button" data-action="subtraction">-</div>
+
+                        <!-- Row 5 -->
+                        <div class="btn btn-dg" role="button" data-action="digit">0</div>
+                        <div class="btn btn-dg" role="button" data-action="decimal">.</div>
+                        <div class="btn btn-op" role="button" data-action="equals">=</div>
+                        <div class="btn btn-op" role="button" data-action="addition">+</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <script src="js/jquery.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
