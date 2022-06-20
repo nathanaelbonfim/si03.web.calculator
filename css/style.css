@@ -60,7 +60,7 @@ html, body {
 
 .display {
     background-color: var(--color-display);
-    height: 5rem;
+    height: 5.5rem;
     width: 100%;
     margin-bottom: var(--default-padding);
     border-radius: var(--radius-display);
@@ -87,6 +87,7 @@ html, body {
 }
 
 .display .text {
+    word-break: break-all;
     color: var(--color-lcd);
     font-size: var(--size-lcd-text);
     text-shadow: 0px 0px 8px var(--color-lcd);
