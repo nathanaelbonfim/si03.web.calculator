@@ -9,6 +9,11 @@ $(".btn").click(function(event) {
     btnClick(event);
 });
 
+/**
+ * Listens to clicks in any button on the page
+ *
+ * @param {event} event - The click event
+ */
 function btnClick(event) {
     const btnElement = event.target;
     const operation = $(btnElement).attr('data-action');
@@ -65,10 +70,23 @@ function btnClick(event) {
     }
 }
 
+/**
+ * Shake the calculator to demonstrate
+ * an error
+ *
+ */
 function displayError() {
     $('.calculator-body').shake(3, 100);
 }
 
+/**
+ * Process the expression and breaks down into
+ * its fundamental elements: operands and operators
+ *
+ * @param {string} expression - The expression to be processed
+ *
+ * @returns {object} {[operands], [operators]}
+ */
 function splitExpression(expression) {
     const regexGetOperands = /([-+/*])/g;
     let result = null;
@@ -83,14 +101,13 @@ function splitExpression(expression) {
         ]
 
         // HACK
-        let operandsFound = operands[1];
-        if (!operandsFound) {
+        let secondOperandFound = operands[1];
+        if (!secondOperandFound) {
             operands = [operands[0]];
         }
     } else {
         operands = [expression]
     }
-
 
     let operators = expression.match(regexGetOperands) ?? 0
 
@@ -100,6 +117,14 @@ function splitExpression(expression) {
     }
 }
 
+/**
+ * Verify if there is more than one decimal point ('.') in
+ * the operands list
+ *
+ * @param {Array} operands - The array of strings to be evaluated
+ *
+ * @returns {boolean}
+ */
 function validateDecimalPoints(operands) {
     const regexGetDecimalPoints = /([.])/g;
     let validDecimalPoinsts = true;
@@ -115,6 +140,13 @@ function validateDecimalPoints(operands) {
     return validDecimalPoinsts;
 }
 
+/**
+ * Validates if a given expression is able to be calculated
+ *
+ * @param {string} expression - The expression to be checked
+ *
+ * @returns {boolean}
+ */
 function validateExpression(expression) {
     const overCharLimit = expression.length > configs.charLimit;
     const splitedExpression = splitExpression(expression);
@@ -127,6 +159,12 @@ function validateExpression(expression) {
     return true;
 }
 
+/**
+ * Appends to the display of the calculator, but validates the expression
+ * before puting it into the screen
+ *
+ * @param {string} newChar - The new thing to be appended
+ */
 function updateDisplay(newChar) {
     const display = $('#display');
     const newExpression = $(display).text() + newChar;
@@ -137,6 +175,16 @@ function updateDisplay(newChar) {
     $(display).text(newExpression);
 }
 
+/**
+ * Clears the display
+ * 
+ * PARAMS:
+ * - mode:
+ *     'all' : clears the entire display
+ *     'last': remove only the last char
+ *
+ * @param {object} params - The mode which will be used
+ */
 function clearDisplay(params) {
     const display = $('#display');
 
@@ -154,6 +202,12 @@ function clearDisplay(params) {
 }
 
 
+/**
+ * Calculate the 4 basic expression using eval
+ * and the splitExpression() results in
+ * 
+ * @returns {string} - The result of the expression
+ */
 function calculateExpression() {
     const expression = $('#display').text();
     const splitedExpression = splitExpression(expression);
@@ -175,10 +229,15 @@ function calculateExpression() {
     );
 }
 
+/**
+ * Calculate the value of a percentage
+ * 
+ * @returns {string} - The result of the expression
+ */
 function calculatePercentage() {
     const expression = $('#display').text();
     const splitedExpression = splitExpression(expression);
-    let result, initialValue, operator, percentage, divisionByZero = null;
+    let initialValue, operator, percentage, divisionByZero = null;
 
     switch (splitedExpression.operators[0]) {
         case '+':
@@ -209,11 +268,6 @@ function calculatePercentage() {
                 + operator
                 + (percentage)
             )
-    }
-
-    if (insuficientOperands || divisionByZero) {
-        displayError();
-        return expression;
     }
 
     return eval(
